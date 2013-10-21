@@ -27,7 +27,7 @@ c
 
 In this fork, you can also pop and peek from the other end of the buffer using popr and peekr:
 
-```
+```clojure
 structure.ring-buffer> (popr (into (ring-buffer 3) '(a b c d e)))
 (c d)
 structure.ring-buffer> (peekr (into (ring-buffer 3) '(a b c d e)))
