@@ -47,6 +47,7 @@
     (seq (for [i (range len)]
            (nth buf (rem (+ start i) (count buf)))))))
 
+
 (defmethod print-method RingBuffer [b ^Writer w]
   (.write w "(")
   (loop [b (seq b)]
@@ -56,6 +57,18 @@
         (.write w " ")
         (recur xs))))
   (.write w ")"))
+
+(defn peekr [this]
+  (nth (.buf this) (rem (+ (.start this) (dec (.len this))) (count (.buf this)))))
+
+(defn popr [this]
+  (if (zero? (.len this))
+    (throw (IllegalStateException. "Can't pop empty queue"))
+    (RingBuffer. 
+     (.start this) 
+     (dec (.len this)) 
+     (assoc (.buf this) (rem (+ (.start this) (dec (.len this))) (count (.buf this))) nil) 
+     (.meta this))))
 
 (defn ring-buffer
   "Create an empty ring buffer with the specified [capacity]."
