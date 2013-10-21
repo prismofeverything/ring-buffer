@@ -1,6 +1,6 @@
-(ns amalloy.ring-buffer-test
+(ns structure.ring-buffer-test
   (:use clojure.test
-        amalloy.ring-buffer))
+        structure.ring-buffer))
 
 (deftest features
   (let [b (ring-buffer 3)]

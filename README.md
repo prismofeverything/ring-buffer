@@ -15,19 +15,28 @@ that's a tradeoff some may not be willing to make.
 ## Usage
 
 ```clojure
-amalloy.ring-buffer> (into (ring-buffer 3) '(a b))
+structure.ring-buffer> (into (ring-buffer 3) '(a b))
 (a b)
-amalloy.ring-buffer> (into (ring-buffer 3) '(a b c d e))
+structure.ring-buffer> (into (ring-buffer 3) '(a b c d e))
 (c d e)
-amalloy.ring-buffer> (pop (into (ring-buffer 3) '(a b c d e)))
+structure.ring-buffer> (pop (into (ring-buffer 3) '(a b c d e)))
 (d e)
-amalloy.ring-buffer> (peek (into (ring-buffer 3) '(a b c d e)))
+structure.ring-buffer> (peek (into (ring-buffer 3) '(a b c d e)))
 c
+```
+
+In this fork, you can also pop and peek from the other end of the buffer using popr and peekr:
+
+```
+structure.ring-buffer> (popr (into (ring-buffer 3) '(a b c d e)))
+(c d)
+structure.ring-buffer> (peekr (into (ring-buffer 3) '(a b c d e)))
+e
 ```
 
 ## Installation
 
-See the [ring-buffer Clojars page](https://clojars.org/amalloy/ring-buffer) for Leiningen and Maven
+See the [ring-buffer Clojars page](https://clojars.org/structure/ring-buffer) for Leiningen and Maven
 install snippets.
 
 ## License

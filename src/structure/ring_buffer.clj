@@ -1,4 +1,4 @@
-(ns amalloy.ring-buffer
+(ns structure.ring-buffer
   (:import (clojure.lang Counted Sequential IPersistentCollection IPersistentStack Reversible IObj)
            (java.io Writer)))
 
@@ -58,10 +58,10 @@
         (recur xs))))
   (.write w ")"))
 
-(defn peekr [this]
+(defn peekr [^RingBuffer this]
   (nth (.buf this) (rem (+ (.start this) (dec (.len this))) (count (.buf this)))))
 
-(defn popr [this]
+(defn popr [^RingBuffer this]
   (if (zero? (.len this))
     (throw (IllegalStateException. "Can't pop empty queue"))
     (RingBuffer. 
